@@ -6,7 +6,17 @@
     <meta name="description" content="SOLUS - A new furniture experience is in the making. Designed slowly. Built honestly. Crafted with soul.">
     <title>SOLUS - Coming Soon</title>
     <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --cream: #f5f3f0;
+            --warm-grey: #d4cfc7;
+            --charcoal: #2a2825;
+            --soft-black: #1a1816;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,37 +25,226 @@
 
         body, html {
             height: 100%;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            overflow: hidden;
+            background-color: var(--cream);
         }
 
         .container {
-            height: 100%;
-            width: 100%;
-            background-image: url('banner.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            height: 100vh;
+            width: 100vw;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            background-color: var(--cream);
         }
 
-        /* Responsive adjustments for mobile */
+        /* Banner section - top 60% */
+        .banner-section {
+            flex: 0 0 60%;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--warm-grey);
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0;
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        /* Content section - bottom 40% */
+        .content-section {
+            flex: 0 0 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 2rem;
+            background-color: var(--cream);
+            position: relative;
+        }
+
+        .logo {
+            width: 180px;
+            height: auto;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+
+        .tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            color: var(--charcoal);
+            text-transform: lowercase;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background-color: var(--charcoal);
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: expandWidth 0.8s ease-out 0.7s forwards;
+        }
+
+        .message {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            color: var(--charcoal);
+            text-align: center;
+            line-height: 1.8;
+            max-width: 600px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.9s forwards;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes expandWidth {
+            from {
+                opacity: 0;
+                width: 0;
+            }
+            to {
+                opacity: 1;
+                width: 60px;
+            }
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .container {
-                background-size: cover;
-                background-position: center;
+            .banner-section {
+                flex: 0 0 50%;
+            }
+
+            .content-section {
+                flex: 0 0 50%;
+                padding: 2rem 1.5rem;
+            }
+
+            .logo {
+                width: 140px;
+                margin-bottom: 1.5rem;
+            }
+
+            .tagline {
+                font-size: 0.95rem;
+                margin-bottom: 2rem;
+            }
+
+            .message {
+                font-size: 0.85rem;
+                line-height: 1.7;
+            }
+
+            .divider {
+                margin-bottom: 2rem;
             }
         }
 
         @media (max-width: 480px) {
-            .container {
-                background-size: cover;
+            .banner-section {
+                flex: 0 0 45%;
+            }
+
+            .content-section {
+                flex: 0 0 55%;
+                padding: 1.5rem 1.25rem;
+            }
+
+            .logo {
+                width: 120px;
+                margin-bottom: 1.25rem;
+            }
+
+            .tagline {
+                font-size: 0.85rem;
+                letter-spacing: 0.12em;
+                margin-bottom: 1.5rem;
+            }
+
+            .message {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Landscape mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .banner-section {
+                flex: 0 0 55%;
+            }
+
+            .content-section {
+                flex: 0 0 45%;
+                padding: 1rem;
+            }
+
+            .logo {
+                width: 100px;
+                margin-bottom: 0.75rem;
+            }
+
+            .tagline {
+                font-size: 0.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .message {
+                font-size: 0.75rem;
+                line-height: 1.5;
+            }
+
+            .divider {
+                margin-bottom: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container"></div>
+    <div class="container">
+        <div class="banner-section">
+            <img src="banner.png" alt="SOLUS Furniture" class="banner-image">
+        </div>
+        <div class="content-section">
+            <img src="logo.jpg" alt="SOLUS Logo" class="logo">
+            <div class="tagline">crafted with soul</div>
+            <div class="divider"></div>
+            <div class="message">
+                A new furniture experience is in the making.<br>
+                Designed slowly. Built honestly.<br><br>
+                <strong>Online Launch Coming Soon</strong>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
