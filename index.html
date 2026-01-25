@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SOLUS - A new furniture experience is in the making. Designed slowly. Built honestly. Crafted with soul.">
+    <meta name="description" content="SOLUS - Crafted with soul. A new furniture experience designed slowly, built honestly.">
     <title>SOLUS - Coming Soon</title>
     <link rel="icon" type="image/jpeg" href="logo.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --cream: #f5f3f0;
-            --warm-grey: #d4cfc7;
-            --charcoal: #2a2825;
-            --soft-black: #1a1816;
+            --cream: #fafaf8;
+            --warm-white: #ffffff;
+            --soft-beige: #e8e6e1;
+            --charcoal: #2b2823;
+            --light-grey: #b8b5af;
+            --accent-gold: #c9a961;
         }
 
         * {
@@ -25,25 +27,105 @@
 
         body, html {
             height: 100%;
-            overflow: hidden;
             background-color: var(--cream);
+            font-family: 'Lato', sans-serif;
+            color: var(--charcoal);
         }
 
-        .container {
-            height: 100vh;
-            width: 100vw;
+        .page-container {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            position: relative;
-            background-color: var(--cream);
         }
 
-        /* Banner section - top 60% */
-        .banner-section {
-            flex: 0 0 60%;
+        /* ========== HEADER ========== */
+        header {
+            background-color: var(--warm-white);
+            border-bottom: 1px solid var(--soft-beige);
+            padding: 2.5rem 4rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background-color: rgba(250, 250, 248, 0.95);
+            opacity: 0;
+            animation: fadeInDown 0.8s ease-out forwards;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header-logo {
+            height: 45px;
+            width: auto;
+            transition: opacity 0.3s ease;
+        }
+
+        .header-logo:hover {
+            opacity: 0.8;
+        }
+
+        /* ========== MAIN CONTENT ========== */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 4rem 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+        }
+
+        .hero-text {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--light-grey);
+        }
+
+        /* Banner Section */
+        .banner-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 4rem 4rem;
+            opacity: 0;
+            animation: fadeIn 1.2s ease-out 0.4s forwards;
+        }
+
+        .banner-wrapper {
             position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
             overflow: hidden;
-            background-color: var(--warm-grey);
+            background-color: var(--soft-beige);
+            border-radius: 2px;
+            box-shadow: 0 8px 40px rgba(43, 40, 35, 0.08);
         }
 
         .banner-image {
@@ -51,65 +133,144 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
-            opacity: 0;
-            animation: fadeIn 1.2s ease-out forwards;
+            transition: transform 0.6s ease;
         }
 
-        /* Content section - bottom 40% */
-        .content-section {
-            flex: 0 0 40%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 3rem 2rem;
-            background-color: var(--cream);
-            position: relative;
+        .banner-wrapper:hover .banner-image {
+            transform: scale(1.02);
         }
 
-        .logo {
-            width: 180px;
-            height: auto;
-            margin-bottom: 2rem;
+        /* Message Section */
+        .message-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 4rem 5rem;
+            text-align: center;
             opacity: 0;
-            animation: fadeInUp 1s ease-out 0.3s forwards;
-        }
-
-        .tagline {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            font-weight: 300;
-            letter-spacing: 0.15em;
-            color: var(--charcoal);
-            text-transform: lowercase;
-            margin-bottom: 2.5rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 0.5s forwards;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
         }
 
         .divider {
-            width: 60px;
+            width: 80px;
             height: 1px;
-            background-color: var(--charcoal);
-            margin-bottom: 2.5rem;
-            opacity: 0;
-            animation: expandWidth 0.8s ease-out 0.7s forwards;
+            background-color: var(--accent-gold);
+            margin: 0 auto 2.5rem;
         }
 
-        .message {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.95rem;
+        .message-text {
+            font-size: 1.05rem;
             font-weight: 300;
+            line-height: 2;
+            letter-spacing: 0.02em;
+            color: var(--charcoal);
+            margin-bottom: 2rem;
+        }
+
+        .launch-text {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.125rem;
+            font-weight: 400;
             letter-spacing: 0.05em;
             color: var(--charcoal);
-            text-align: center;
-            line-height: 1.8;
-            max-width: 600px;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 0.9s forwards;
         }
 
-        /* Animations */
+        /* ========== FOOTER ========== */
+        footer {
+            background-color: var(--warm-white);
+            border-top: 1px solid var(--soft-beige);
+            padding: 3rem 4rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 0.875rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+            color: var(--charcoal);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            font-size: 0.875rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--light-grey);
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 2.5rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--soft-beige);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.8rem;
+            font-weight: 300;
+            color: var(--light-grey);
+            letter-spacing: 0.05em;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-link {
+            width: 20px;
+            height: 20px;
+            color: var(--light-grey);
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--accent-gold);
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -119,132 +280,191 @@
             }
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            header {
+                padding: 2rem 2.5rem;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+
+            .hero-section {
+                padding: 4rem 2.5rem 2.5rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .banner-container {
+                padding: 0 2.5rem 3rem;
+            }
+
+            .message-section {
+                padding: 3rem 2.5rem 4rem;
+            }
+
+            .footer-content {
+                gap: 2rem;
+            }
+
+            footer {
+                padding: 2.5rem 2.5rem;
             }
         }
 
-        @keyframes expandWidth {
-            from {
-                opacity: 0;
-                width: 0;
-            }
-            to {
-                opacity: 1;
-                width: 60px;
-            }
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .banner-section {
-                flex: 0 0 50%;
+            header {
+                padding: 1.75rem 1.5rem;
             }
 
-            .content-section {
-                flex: 0 0 50%;
-                padding: 2rem 1.5rem;
+            .header-logo {
+                height: 38px;
             }
 
-            .logo {
-                width: 140px;
-                margin-bottom: 1.5rem;
+            .hero-section {
+                padding: 3rem 1.5rem 2rem;
             }
 
-            .tagline {
+            .hero-title {
+                font-size: 1.75rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.875rem;
+            }
+
+            .banner-container {
+                padding: 0 1.5rem 2.5rem;
+            }
+
+            .banner-wrapper {
+                aspect-ratio: 4 / 3;
+            }
+
+            .message-section {
+                padding: 2.5rem 1.5rem 3rem;
+            }
+
+            .message-text {
                 font-size: 0.95rem;
-                margin-bottom: 2rem;
+                line-height: 1.8;
             }
 
-            .message {
-                font-size: 0.85rem;
-                line-height: 1.7;
+            .launch-text {
+                font-size: 1rem;
             }
 
-            .divider {
-                margin-bottom: 2rem;
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            footer {
+                padding: 2rem 1.5rem;
             }
         }
 
         @media (max-width: 480px) {
-            .banner-section {
-                flex: 0 0 45%;
-            }
-
-            .content-section {
-                flex: 0 0 55%;
+            header {
                 padding: 1.5rem 1.25rem;
             }
 
-            .logo {
-                width: 120px;
-                margin-bottom: 1.25rem;
+            .header-logo {
+                height: 32px;
             }
 
-            .tagline {
-                font-size: 0.85rem;
-                letter-spacing: 0.12em;
-                margin-bottom: 1.5rem;
+            .hero-title {
+                font-size: 1.5rem;
             }
 
-            .message {
+            .hero-subtitle {
                 font-size: 0.8rem;
-            }
-        }
-
-        /* Landscape mobile */
-        @media (max-height: 500px) and (orientation: landscape) {
-            .banner-section {
-                flex: 0 0 55%;
+                letter-spacing: 0.1em;
             }
 
-            .content-section {
-                flex: 0 0 45%;
-                padding: 1rem;
+            .banner-wrapper {
+                aspect-ratio: 1 / 1;
             }
 
-            .logo {
-                width: 100px;
-                margin-bottom: 0.75rem;
-            }
-
-            .tagline {
-                font-size: 0.8rem;
-                margin-bottom: 1rem;
-            }
-
-            .message {
-                font-size: 0.75rem;
-                line-height: 1.5;
-            }
-
-            .divider {
-                margin-bottom: 1rem;
+            .message-text {
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="banner-section">
-            <img src="banner.png" alt="SOLUS Furniture" class="banner-image">
-        </div>
-        <div class="content-section">
-            <img src="logo.jpg" alt="SOLUS Logo" class="logo">
-            <div class="tagline">crafted with soul</div>
-            <div class="divider"></div>
-            <div class="message">
-                A new furniture experience is in the making.<br>
-                Designed slowly. Built honestly.<br><br>
-                <strong>Online Launch Coming Soon</strong>
+    <div class="page-container">
+        <!-- HEADER -->
+        <header>
+            <div class="header-content">
+                <img src="logo.jpg" alt="SOLUS" class="header-logo">
             </div>
-        </div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="hero-text">
+                    <h1 class="hero-title">Crafted with Soul</h1>
+                    <p class="hero-subtitle">A New Furniture Experience</p>
+                </div>
+            </section>
+
+            <!-- Banner Section -->
+            <section class="banner-container">
+                <div class="banner-wrapper">
+                    <img src="banner.png" alt="SOLUS Furniture Collection" class="banner-image">
+                </div>
+            </section>
+
+            <!-- Message Section -->
+            <section class="message-section">
+                <div class="divider"></div>
+                <p class="message-text">
+                    Designed slowly. Built honestly.<br>
+                    Every piece tells a story of meticulous craftsmanship<br>
+                    and timeless elegance.
+                </p>
+                <p class="launch-text">Online Launch Coming Soon</p>
+            </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>hello@solusuae.com</p>
+                    <p>Dubai, UAE</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Stay Updated</h3>
+                    <p>Join our mailing list for exclusive<br>early access to our collection.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow</h3>
+                    <a href="#">Instagram</a>
+                    <a href="#">Pinterest</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2025 SOLUS. All rights reserved.</p>
+                <div class="social-links">
+                    <svg class="social-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
